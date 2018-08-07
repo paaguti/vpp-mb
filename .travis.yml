@@ -9,9 +9,13 @@ compiler:
   - gcc
 
 before_install:
-  - echo "deb [trusted=yes] https://nexus.fd.io/content/repositories/fd.io.stable.1704.ubuntu.trusty.main/ ./" | sudo tee -a /etc/apt/sources.list.d/99fd.io.list
   - sudo apt update 
-  - sudo apt install -y vpp vpp-lib vpp-dev vpp-plugins vpp-api-python python-cffi autoconf libtool ethtool
+  - sudo apt install -y python-cffi autoconf libtool ethtool
+  - git clone https://gerrit.fd.io/r/vpp -b stable/1710
+  - ./vpp/extras/vagrant/build.sh
+#  - echo "deb [trusted=yes] https://nexus.fd.io/content/repositories/fd.io.stable.1704.ubuntu.trusty.main/ ./" #| sudo tee -a /etc/apt/sources.list.d/99fd.io.list
+#  - sudo apt update 
+#  - sudo apt install -y vpp vpp-lib vpp-dev vpp-plugins vpp-api-python python-cffi autoconf libtool ethtool
 
 script: 
   - cd mmb-plugin
